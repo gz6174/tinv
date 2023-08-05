@@ -19,10 +19,10 @@ def main(args):
     )
 
     # Load tokenizer
-    tokenizer = CLIPTokenizer.from_pretrained(args.clip_model_path)
+    tokenizer = CLIPTokenizer.from_pretrained(args.clip_tokenizer_path)
 
     # Load scheduler and models
-    text_encoder = CLIPTextModelWithProjection.from_pretrained(args.clip_model_path).to(accelerator.device)
+    text_encoder = CLIPTextModelWithProjection.from_pretrained(args.clip_text_encoder_path).to(accelerator.device)
 
     with torch.no_grad():
         # Add the placeholder token in tokenizer

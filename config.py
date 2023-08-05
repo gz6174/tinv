@@ -2,7 +2,8 @@ from types import SimpleNamespace
 
 train_args = dict({
     "save_steps": 500,
-    "clip_model_path": "models/XL/text_encoder_2",
+    "clip_tokenizer_path": "models/XL/tokenizer_2",
+    "clip_text_encoder_path": "models/XL/text_encoder_2",
     "pretrained_model_name_or_path": "models/XL",
     "vision_model_pretrained": "models/XL/text_encoder_2",
     "revision": None,
