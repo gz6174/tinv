@@ -213,8 +213,7 @@ class TextualInversionDataset(Dataset):
             if learnable_property == "object" else blank_template
         self.flip_transform = T.RandomHorizontalFlip(p=self.flip_p)
 
-        image_model = CLIPVisionModelWithProjection.from_pretrained('models/XL/text_encoder').to("cuda").to(torch.float16).eval()
-        image_model_2 = CLIPVisionModelWithProjection.from_pretrained('models/XL/text_encoder_2').to("cuda").to(torch.float16).eval()
+        image_model = CLIPVisionModelWithProjection.from_pretrained(vision_model_path).to("cuda").to(torch.float16).eval()
 
         with torch.no_grad():
             self.clip_embeddings = []
@@ -257,7 +256,7 @@ class TextualInversionDataset(Dataset):
                     image = (image / 127.5 - 1.0).astype(np.float32)
                     image = torch.from_numpy(image).permute(2, 0, 1).to(torch.float16).to("cuda").unsqueeze(0)
                     latents = vae.encode(image).latent_dist.sample().squeeze(0)
-                    latents = latents * 0.18125
+                    latents = latents * 0.13025
                     self.latents.append(latents)
         else:
             self.latents = None

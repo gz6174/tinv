@@ -8,7 +8,7 @@ train_args = dict({
     "vision_model_pretrained": "models/XL/text_encoder_2",
     "revision": None,
     "tokenizer_name": None,
-    "train_data_dir": "./input-images",
+    "train_data_dir": "./input",
     "placeholder_token": "sksts",
     "initializer_token": "warrior",
     "learnable_property": "style",  # ['object', 'style']

@@ -202,6 +202,7 @@ def main(args):
             if clip_global_step >= args.clip_max_train_steps:
                 break
 
+    # TODO: implementation for vision_model_path=None
     # Dataset and DataLoaders creation:
     train_dataset = TextualInversionDataset(
         data_root=args.train_data_dir,
@@ -211,7 +212,7 @@ def main(args):
         repeats=args.repeats,
         learnable_property=args.learnable_property,
         center_crop=args.center_crop,
-        vision_model_path=None,
+        vision_model_path=args.vision_model_pretrained,
         initializer_token=args.initializer_token,
         pad_tokens=args.pad_tokens,
         vae_path=args.pretrained_model_name_or_path if args.cache_latents else None,
@@ -327,6 +328,7 @@ def main(args):
                     progress_bar.update(1)
                 continue
 
+            # TODO: implement 'latents', scale latents with vae config 0.13(?)
             with accelerator.accumulate(text_encoder):
                 if args.cache_latents == False:
                     # Convert images to latent space
